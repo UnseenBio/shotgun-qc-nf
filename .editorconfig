@@ -9,7 +9,7 @@ end_of_line = lf
 insert_final_newline = true
 trim_trailing_whitespace = true
 
-[*.{json,yml,nf}]
+[*.{json,yml,nf,config}]
 indent_size = 2
 
 [*.{md,rst}]
