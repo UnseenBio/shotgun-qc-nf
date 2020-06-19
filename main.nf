@@ -7,7 +7,7 @@ nextflow.preview.dsl=2
  * ############################################################################
  */
 
-params.input = 'sequences'
+params.sequences = 'sequences'
 params.outdir = 'results'
 
 /* ############################################################################
@@ -95,19 +95,19 @@ workflow {
 
 Shotgun Sequencing Quality Control
 ==================================
-FASTQ Path: ${params.input}
+FASTQ Path: ${params.sequences}
 Results Path: ${params.outdir}
 
 ************************************************************
 
 """
 
-  fastq_triples = Channel.fromFilePairs("${params.input}/*{1,2}.fastq.gz",
+  fastq_triples = Channel.fromFilePairs("${params.sequences}/*_{1,2}.fastq.gz",
     checkIfExists: true,
     flat: true
   )
 
-  fastq_singles = Channel.fromPath("${params.input}/*.fastq.gz")
+  fastq_singles = Channel.fromPath("${params.sequences}/*.fastq.gz")
 
   qc(fastq_triples, fastq_singles)
 }
